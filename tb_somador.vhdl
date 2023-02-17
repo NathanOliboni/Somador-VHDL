@@ -50,19 +50,15 @@ begin
     u_teste: process
     	begin
     		sa12<= x"000";
-		sc0<=x"FFF";
+		sb12<=x"FFF";
 		s_OP<= '0';
 		wait for 4 ns;
 				
 		sa12<= x"000";
-		sc0<=x"FFF";
+		sb12<=x"FFF";
 		s_OP<= '1';
 		wait for 4 ns;
 				
 		wait;
 	end process;
 end architecture;
-     
-
-
-	

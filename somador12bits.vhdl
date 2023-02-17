@@ -26,12 +26,12 @@ end component;
     
 begin
     u_soma1 : somador4bits port map(a12(3 downto 0), b12(3 downto 0), Cin12, z12(3 downto 0), s_Cout12bits(0));
-    s_Cin12bits(0) <= s_Cout12bits(0);
+    s_Cin12bits(0) <= s_Cout12bits(0) after 32 ns;
     
     u_soma2 : somador4bits port map(a12(7 downto 4), b12(7 downto 4), s_Cin12bits(0), z12(7 downto 4), s_Cout12bits(1));
-    s_Cin12bits(1) <= s_Cout12bits(1);
+    s_Cin12bits(1) <= s_Cout12bits(1)after 32 ns;
     
     u_soma3 : somador4bits port map(a12(11 downto 8), b12(11 downto 8), s_Cin12bits(1), z12(11 downto 8), s_Cout12bits(2));
-    Cout12 <= s_Cout12bits(2);
+    Cout12 <= s_Cout12bits(2) after 32 ns;
     
 end architecture;

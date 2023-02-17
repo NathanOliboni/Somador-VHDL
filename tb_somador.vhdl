@@ -25,7 +25,7 @@ architecture soma of tb_somador is
     
     component overflow is -- COMO EU INSIRO ISSO AQUI
     port (
-        a, b, z: in std_logic;
+        a, b, z, op: in std_logic;
         overflw : out std_logic
     );
     end component;
@@ -45,20 +45,60 @@ begin
     
     u_somador: somador12bits port map(sa12(11 downto 0), szmux(11 downto 0), s_OP, sz12(11 downto 0), s_Cout12);
     
-    u_overflow: overflow port map(sa12(11), sb12(11), sz12(11), s_over);
+    u_overflow: overflow port map(sa12(11), szmux(11), s_Cout12, s_OP, s_over);
     
     u_teste: process
     	begin
     		sa12<= x"000";
-		sb12<=x"FFF";
+		sb12<= x"FFF";
 		s_OP<= '0';
-		wait for 4 ns;
+		wait for 124 ns;
 				
 		sa12<= x"000";
-		sb12<=x"FFF";
+		sb12<= x"FFF";
 		s_OP<= '1';
-		wait for 4 ns;
+		wait for 124 ns;
+		
+		sa12<= x"FFF";
+		sb12<= x"001";
+		s_OP<= '0';
+		wait for 124 ns;
+		
+		sa12<= x"FFF";
+		sb12<= x"001";
+		s_OP<= '1';
+		wait for 124 ns;
+		
+		sa12<= x"007";
+		sb12<= x"002";
+		s_OP<= '1';
+		wait for 124 ns;
+		
+		sa12<= x"FFE";
+		sb12<= x"FFE";
+		s_OP<= '1';
+		wait for 124 ns;
+		
+		sa12<=x"015";
+		sb12<=x"005";
+		s_OP<='0';
+		wait for 124 ns;
+		
+		sa12<=x"015";
+		sb12<=x"005";
+		s_OP<='1';
+		wait for 124 ns;	
+		
+		sa12<=x"CCD";
+		sb12<=x"001";
+		s_OP<='0';
+		wait for 124 ns;	
 				
+		sa12<=x"CCD";
+		sb12<=x"001";
+		s_OP<='1';
+		wait for 124 ns;		
 		wait;
 	end process;
 end architecture;
+	

@@ -15,6 +15,6 @@ architecture comuta of mux2x12 is
 begin
         --atribuição condicional
     zmux <= c0 when sel = '0' else
-    c1 when sel = '1' else (others => 'Z'); --Z = Alta impedância onde se assume qualquer valor
+    c1 when sel = '1' else (others => 'Z') after 12 ns; --Z = Alta impedância onde se assume qualquer valor
 
 end architecture;
